@@ -2,6 +2,8 @@
 import { SignedIn, UserButton } from "@clerk/clerk-react";
 import Image from "next/image";
 import Link from "next/link";
+import MobileNav from "./MobileNav";
+import { Theme } from "./Theme";
 
 function Navbar() {
   return (
@@ -26,7 +28,7 @@ function Navbar() {
       </Link>
       {/* GlobalSearch */}
       <div className="flex-between gap-5">
-        Theme
+        <Theme />
         <SignedIn>
           <UserButton
             afterSignOutUrl="/"
@@ -40,7 +42,7 @@ function Navbar() {
             }}
           />
         </SignedIn>
-        MobileNav
+        <MobileNav />
       </div>
     </nav>
   );
