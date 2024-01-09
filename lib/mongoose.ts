@@ -1,6 +1,6 @@
 import console from 'console';
 import mongoose from 'mongoose';
-import { Question } from './models/question';
+import { Question } from '../database/question.model';
 
 let isConnected: boolean = false;
 
