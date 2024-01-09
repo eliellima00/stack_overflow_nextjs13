@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createQuestion } from "@/lib/actions/question.action";
 import { QuestionSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Editor } from "@tinymce/tinymce-react";
@@ -35,11 +36,13 @@ const Question = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof QuestionSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionSchema>) {
     setIsSubmitting(true);
     try {
       // make an async call to your API -> create a question
       // contain all form data
+
+      await createQuestion({});
       // navigate to home page
     } catch (error) {
     } finally {
@@ -126,6 +129,8 @@ const Question = () => {
                     editorRef.current = editor;
                   }}
                   initialValue=""
+                  onBlur={field.onBlur}
+                  onEditorChange={(content) => field.onChange(content)}
                   init={{
                     height: 350,
                     menubar: false,
@@ -156,7 +161,7 @@ const Question = () => {
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
                 Introduce the problem and expand on what you put in the title.
-                Minimum 20 characters.
+                Minimum 100 characters.
               </FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
