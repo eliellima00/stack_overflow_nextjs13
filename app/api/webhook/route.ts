@@ -8,10 +8,10 @@ export async function POST(req: Request) {
 
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   // TODO: Add your webhook secret to .env.local
-  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
+  const NEXT_CLERK_WEBHOOK_SECRET = process.env.NEXT_CLERK_WEBHOOK_SECRET
 
-  if (!WEBHOOK_SECRET) {
-    throw new Error('Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local')
+  if (!NEXT_CLERK_WEBHOOK_SECRET) {
+    throw new Error('Please add NEXT_CLERK_WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local')
   }
 
   // Get the headers
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
   const body = JSON.stringify(payload);
 
   // Create a new Svix instance with your secret.
-  const wh = new Webhook(WEBHOOK_SECRET);
+  const wh = new Webhook(NEXT_CLERK_WEBHOOK_SECRET);
 
   let evt: WebhookEvent
 
