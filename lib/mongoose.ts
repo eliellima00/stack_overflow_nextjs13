@@ -1,4 +1,3 @@
-import Question from '@/database/question.model';
 import console from 'console';
 import mongoose from 'mongoose';
 
@@ -19,14 +18,6 @@ export const connectToDatabase = async () => {
     await mongoose.connect(process.env.MONGODB_URL, {
       dbName: 'devflow'
     })
-
-    const question = new Question({
-      title: 'Teste',
-      explanation: 'Teste explanation from question',
-      tags: ['Teste', 'Mongol', 'DB']
-    })
-
-    await question.save()
 
     isConnected = true
     console.log('MongoDb is connected')
